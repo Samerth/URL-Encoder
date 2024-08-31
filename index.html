@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Generator</title>
+       <!-- Favicon -->
+       <link href="img\favicon.png" alt="icon" rel="icon" style="background: none;">
+
+       <link rel="stylesheet" href="styles.css">
+
+</head>
+
+        
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="img\ucw_logo.png" alt="University Canada West">
+            <h1>Mergent  URL Generator</h1>
+            <div class="input-container">
+                <!-- <label for="userUrl">Enter the Mergent URL:</label> -->
+                <div style="text-align: center;">
+                    <input type="text" id="userUrl" placeholder="Enter the Mergent URL:">
+                  </div>
+            </div>
+           
+            <button  class="button" onclick="generateShareableURL()">Generate Shareable URL</button>
+         
+            <div id="output"></div>
+    <!-- Container to display the generated URL -->
+    <footer id="footer" style="color: black;">
+        <span id="copyright">
+            &copy; <span id="currentYear"></span> URL Generator - All rights reserved.
+        </span><br>
+        Version: 1.0 - Developed by Samerth Pathak - <span id="currentDate"></span><br>
+        <a href="https://www.linkedin.com/in/samerth-pathak" target="_blank">LinkedIn Profile</a>
+    </footer>
+
+    <script>
+        function generateShareableURL() {
+            // Base URL and entity for OpenAthens authentication
+            const baseUrl = "https://marketatlasoa.mergent.com/login";
+            const entity = "https://idp.ucanwest.ca/entity";
+
+            // Get the user input URL
+            const userUrl = document.getElementById("userUrl").value;
+
+            if (!userUrl) {
+                alert("Please enter a valid URL.");
+                return;
+            }
+
+            // Parse the URL to extract the path and query string
+            try {
+                const url = new URL(userUrl);
+                const targetPath = url.pathname + url.search;
+
+                // Encode the target path for the deep link
+                const encodedTargetPath = encodeURIComponent(targetPath);
+
+                // Construct the shareable URL
+                const shareableUrl = `${baseUrl}?entity=${encodeURIComponent(entity)}&target=${encodedTargetPath}`;
+
+                 // Display the generated URL in the output div
+                 const outputDiv = document.getElementById("output");
+                outputDiv.innerHTML = `
+                    <p>Shareable URL: 
+                        <a href="${shareableUrl}" target="_blank">${shareableUrl}</a>
+                        <button class="copy-button" onclick="copyToClipboard('${shareableUrl}')">Copy</button>
+                    </p>`;
+            } catch (error) {
+                alert("Please enter a valid Mergent URL.");
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('URL copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+         // Update current date in footer
+         const currentDateSpan = document.getElementById('currentDate');
+        const currentYearSpan = document.getElementById('currentYear');
+        const footer = document.getElementById('footer');
+
+        function updateCurrentDate() {
+            const currentDate = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = currentDate.toLocaleDateString('en-US', options);
+            currentDateSpan.textContent = formattedDate;
+            currentYearSpan.textContent = new Date().getFullYear();
+        }
+
+        updateCurrentDate(); // Call initially
+
+    </script>
+</body>
+</html>

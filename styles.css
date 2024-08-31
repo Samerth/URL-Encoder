@@ -1,0 +1,126 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #b80000; /* Dark red background */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+}
+
+.header {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 570px;
+}
+
+.header img {
+    width: 350px;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.input-container {
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.input-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center; /* Center the text inside the input box */
+}
+
+.button {
+    background-color: #b80000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.button:hover {
+    background-color: #9e0000;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+}
+
+/* styles.css */
+#userUrl {
+    width: 100%; /* Makes the input box take up the full width of its container */
+    max-width: 600px; /* Optional: limits the maximum width of the input box */
+    padding: 10px; /* Optional: adds padding inside the input box */
+    font-size: 16px; /* Optional: increases the font size for better readability */
+    border: 1px solid #ccc; /* Adds a border around the input field */
+    border-radius: 4px; /* Rounds the corners of the input field */
+}
+
+
+
+#output {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#output p {
+    margin: 0;
+    font-size: 16px;
+    word-break: break-all; /* Ensures long URLs break to fit the container */
+}
+
+#output a {
+    color: #b80000;
+    text-decoration: none;
+    word-break: break-word; /* Ensure URLs wrap to the next line if too long */
+}
+
+#output a:hover {
+    text-decoration: underline;
+}
+
+.copy-button {
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.copy-button:hover {
+    background-color: #555;
+}
