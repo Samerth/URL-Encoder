@@ -39,41 +39,41 @@
     </footer>
 
     <script>
-        function generateShareableURL() {
-            // Base URL and entity for OpenAthens authentication
-            const baseUrl = "https://marketatlasoa.mergent.com/login";
-            const entity = "https://idp.ucanwest.ca/entity";
+       function generateShareableURL() {
+    // Base URL and entity for OpenAthens authentication
+    const baseUrl = "https://marketatlasoa.mergent.com/login";
+    const entity = "https://idp.ucanwest.ca/entity";
 
-            // Get the user input URL
-            const userUrl = document.getElementById("userUrl").value;
+    // Get the user input URL
+    const userUrl = document.getElementById("userUrl").value;
 
-            if (!userUrl) {
-                alert("Please enter a valid URL.");
-                return;
-            }
+    if (!userUrl) {
+        alert("Please enter a valid URL.");
+        return;
+    }
 
-            // Parse the URL to extract the path and query string
-            try {
-                const url = new URL(userUrl);
-                const targetPath = url.pathname + url.search;
+    // Parse the URL to extract the path and query string
+    try {
+        const url = new URL(userUrl);
+        const targetPath = url.pathname + url.search;
 
-                // Encode the target path for the deep link
-                const encodedTargetPath = encodeURIComponent(targetPath);
+        // Encode the target path for the deep link
+        const encodedTargetPath = encodeURIComponent(targetPath);
 
-                // Construct the shareable URL
-                const shareableUrl = `${baseUrl}?entity=${encodeURIComponent(entity)}&target=${encodedTargetPath}`;
+        // Construct the shareable URL
+        const shareableUrl = `${baseUrl}?entity=${encodeURIComponent(entity)}&target=${encodedTargetPath}`;
 
-                 // Display the generated URL in the output div
-                 const outputDiv = document.getElementById("output");
-                outputDiv.innerHTML = `
-                    <p>Shareable URL: 
-                        <a href="${shareableUrl}" target="_blank">${shareableUrl}</a>
-                        <button class="copy-button" onclick="copyToClipboard('${shareableUrl}')">Copy</button>
-                    </p>`;
-            } catch (error) {
-                alert("Please enter a valid Mergent URL.");
-            }
-        }
+        // Display the generated URL in the output div
+        const outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = `
+            <p>Shareable URL: 
+                <a href="${shareableUrl}" target="_blank">${shareableUrl}</a>
+                <button class="copy-button" onclick="copyToClipboard('${shareableUrl}')">Copy</button>
+            </p>`;
+    } catch (error) {
+        alert("Please enter a valid Mergent URL.");
+    }
+}
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
